@@ -1,0 +1,2782 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/17/2020 1:03:03 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IST-RL-VH4-13"
+  DTS:CreatorName="AD\mfurtado"
+  DTS:DTSID="{9F200613-8519-48EC-B53A-9C55A41E5E45}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Fudgeflix_Stage"
+  DTS:PackageType="5"
+  DTS:VersionBuild="13"
+  DTS:VersionGUID="{BE433E2D-9F0E-4994-A350-5FE8A5691228}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5557B6AF-ADC1-40E0-AA10-D7CC305FDB1A}"
+      DTS:ObjectName="ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ist-cs-dw1.ad.syr.edu;Initial Catalog=fudgeflix_v3;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{D95D1DB7-2176-40F0-9584-8111277EB2BD}"
+      DTS:ObjectName="ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ist-cs-dw1.ad.syr.edu;Initial Catalog=ist722_hhkhan_cb1_stage;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{2B6E0A6A-C69B-4BEA-A940-FA4B9DAF850F}"
+      DTS:ObjectName="ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ist-cs-dw1.ad.syr.edu;Initial Catalog=ist722_hhkhan_cb1_stage;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{5BEF4D49-3D57-454E-8674-253DC15F7E5E}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Fudgeflex ff_accounts to stage_ff_accounts"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - Stage stage_ff_accounts"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage_ff_accounts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].Columns[account_id]"
+                      cachedDataType="i4"
+                      cachedName="account_id"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_id]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_id]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].Columns[account_email]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="account_email"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_email]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_email]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].Columns[account_firstname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="account_firstname"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_firstname]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_firstname]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].Columns[account_lastname]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="account_lastname"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_lastname]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_lastname]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].Columns[account_address]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="1000"
+                      cachedName="account_address"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_address]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_address]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].Columns[account_zipcode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="account_zipcode"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_zipcode]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_zipcode]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].Columns[account_plan_id]"
+                      cachedDataType="i4"
+                      cachedName="account_plan_id"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_plan_id]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_plan_id]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].Columns[account_opened_on]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="account_opened_on"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_opened_on]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_opened_on]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_id]"
+                      dataType="i4"
+                      name="account_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="account_email" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_firstname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="account_firstname" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_lastname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="account_lastname" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="account_address" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_zipcode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="account_zipcode" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_plan_id]"
+                      dataType="i4"
+                      name="account_plan_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input].ExternalColumns[account_opened_on]"
+                      dataType="dbTimeStamp"
+                      name="account_opened_on" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - fudgeflex_v3 ff_accounts"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ff_accounts]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_id]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_id]"
+                      name="account_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_email]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_email]"
+                      length="200"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_email]"
+                      name="account_email"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_firstname]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_firstname]"
+                      length="50"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_firstname]"
+                      name="account_firstname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_lastname]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_lastname]"
+                      length="50"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_lastname]"
+                      name="account_lastname"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_address]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_address]"
+                      length="1000"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_address]"
+                      name="account_address"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_zipcode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_zipcode]"
+                      length="5"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_zipcode]"
+                      name="account_zipcode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_plan_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_plan_id]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_plan_id]"
+                      name="account_plan_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_opened_on]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_opened_on]"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].Columns[account_opened_on]"
+                      name="account_opened_on"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_id]"
+                      dataType="i4"
+                      name="account_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="account_email" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_firstname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="account_firstname" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_lastname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="account_lastname" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="account_address" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_zipcode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="account_zipcode" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_plan_id]"
+                      dataType="i4"
+                      name="account_plan_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output].ExternalColumns[account_opened_on]"
+                      dataType="dbTimeStamp"
+                      name="account_opened_on" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_id]"
+                      name="account_id" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_email]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_email]"
+                      name="account_email" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_firstname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_firstname]"
+                      name="account_firstname" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_lastname]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_lastname]"
+                      name="account_lastname" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_address]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_address]"
+                      name="account_address" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_zipcode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_zipcode]"
+                      name="account_zipcode" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_plan_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_plan_id]"
+                      name="account_plan_id" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_opened_on]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[account_opened_on]"
+                      name="account_opened_on" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts.Paths[OLE DB Source Output]"
+              endId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{B9C69E7F-7BF9-4A65-BD4B-537E4133046F}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Fudgeflex ff_account_titles to stage_ff_account_titles"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - Stage stage_ff_account_titles"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage_ff_account_titles]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].Columns[at_id]"
+                      cachedDataType="i4"
+                      cachedName="at_id"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_id]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_id]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].Columns[at_account_id]"
+                      cachedDataType="i4"
+                      cachedName="at_account_id"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_account_id]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_account_id]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].Columns[at_title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="at_title_id"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_title_id]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_title_id]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].Columns[at_queue_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="at_queue_date"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_queue_date]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_queue_date]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].Columns[at_shipped_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="at_shipped_date"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_shipped_date]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_shipped_date]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].Columns[at_returned_date]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="at_returned_date"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_returned_date]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_returned_date]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].Columns[at_rating]"
+                      cachedDataType="i4"
+                      cachedName="at_rating"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_rating]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_rating]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_id]"
+                      dataType="i4"
+                      name="at_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_account_id]"
+                      dataType="i4"
+                      name="at_account_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="at_title_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_queue_date]"
+                      dataType="dbTimeStamp"
+                      name="at_queue_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_shipped_date]"
+                      dataType="dbTimeStamp"
+                      name="at_shipped_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_returned_date]"
+                      dataType="dbTimeStamp"
+                      name="at_returned_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input].ExternalColumns[at_rating]"
+                      dataType="i4"
+                      name="at_rating" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - fudgeflex_v3 ff_account_titles"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ff_account_titles]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_id]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_id]"
+                      name="at_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_account_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_account_id]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_account_id]"
+                      name="at_account_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_title_id]"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_title_id]"
+                      name="at_title_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_queue_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_queue_date]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_queue_date]"
+                      name="at_queue_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_shipped_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_shipped_date]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_shipped_date]"
+                      name="at_shipped_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_returned_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_returned_date]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_returned_date]"
+                      name="at_returned_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_rating]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_rating]"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].Columns[at_rating]"
+                      name="at_rating"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_id]"
+                      dataType="i4"
+                      name="at_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_account_id]"
+                      dataType="i4"
+                      name="at_account_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="at_title_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_queue_date]"
+                      dataType="dbTimeStamp"
+                      name="at_queue_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_shipped_date]"
+                      dataType="dbTimeStamp"
+                      name="at_shipped_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_returned_date]"
+                      dataType="dbTimeStamp"
+                      name="at_returned_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output].ExternalColumns[at_rating]"
+                      dataType="i4"
+                      name="at_rating" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_id]"
+                      name="at_id" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_account_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_account_id]"
+                      name="at_account_id" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_title_id]"
+                      name="at_title_id" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_queue_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_queue_date]"
+                      name="at_queue_date" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_shipped_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_shipped_date]"
+                      name="at_shipped_date" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_returned_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_returned_date]"
+                      name="at_returned_date" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_rating]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[at_rating]"
+                      name="at_rating" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles.Paths[OLE DB Source Output]"
+              endId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{4e506a78-ec0b-4de4-a445-6864cffe7925}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Fudgeflex ff_titles to stage_ff_titles"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - Stage stage_ff_titles"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage_ff_titles]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_id"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_id]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_id]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="title_name"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_name]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_name]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_type]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_type"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_type]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_type]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_synopsis]"
+                      cachedCodepage="1252"
+                      cachedDataType="text"
+                      cachedName="title_synopsis"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_synopsis]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_synopsis]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_avg_rating]"
+                      cachedDataType="numeric"
+                      cachedName="title_avg_rating"
+                      cachedPrecision="18"
+                      cachedScale="2"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_avg_rating]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_avg_rating]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_release_year]"
+                      cachedDataType="i4"
+                      cachedName="title_release_year"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_release_year]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_release_year]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_runtime]"
+                      cachedDataType="i4"
+                      cachedName="title_runtime"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_runtime]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_runtime]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_rating]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_rating"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_rating]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_rating]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_bluray_available]"
+                      cachedDataType="bool"
+                      cachedName="title_bluray_available"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_bluray_available]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_bluray_available]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_dvd_available]"
+                      cachedDataType="bool"
+                      cachedName="title_dvd_available"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_dvd_available]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_dvd_available]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_instant_available]"
+                      cachedDataType="bool"
+                      cachedName="title_instant_available"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_instant_available]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_instant_available]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].Columns[title_date_modified]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="title_date_modified"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_date_modified]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_date_modified]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="title_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="title_name" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="title_type" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_synopsis]"
+                      codePage="1252"
+                      dataType="text"
+                      name="title_synopsis" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_avg_rating]"
+                      dataType="numeric"
+                      name="title_avg_rating"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_release_year]"
+                      dataType="i4"
+                      name="title_release_year" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_runtime]"
+                      dataType="i4"
+                      name="title_runtime" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_rating]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="title_rating" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_bluray_available]"
+                      dataType="bool"
+                      name="title_bluray_available" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_dvd_available]"
+                      dataType="bool"
+                      name="title_dvd_available" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_instant_available]"
+                      dataType="bool"
+                      name="title_instant_available" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input].ExternalColumns[title_date_modified]"
+                      dataType="dbTimeStamp"
+                      name="title_date_modified" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - fudgeflex_v3 ff_titles"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ff_titles]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_id]"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_id]"
+                      name="title_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_name]"
+                      length="200"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_name]"
+                      name="title_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_type]"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_type]"
+                      name="title_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_synopsis]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_synopsis]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_synopsis]"
+                      name="title_synopsis"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_avg_rating]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_avg_rating]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_avg_rating]"
+                      name="title_avg_rating"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_release_year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_release_year]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_release_year]"
+                      name="title_release_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_runtime]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_runtime]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_runtime]"
+                      name="title_runtime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_rating]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_rating]"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_rating]"
+                      name="title_rating"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_bluray_available]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_bluray_available]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_bluray_available]"
+                      name="title_bluray_available"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_dvd_available]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_dvd_available]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_dvd_available]"
+                      name="title_dvd_available"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_instant_available]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_instant_available]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_instant_available]"
+                      name="title_instant_available"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_date_modified]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_date_modified]"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].Columns[title_date_modified]"
+                      name="title_date_modified"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="title_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="title_name" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="title_type" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_synopsis]"
+                      codePage="1252"
+                      dataType="text"
+                      name="title_synopsis" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_avg_rating]"
+                      dataType="numeric"
+                      name="title_avg_rating"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_release_year]"
+                      dataType="i4"
+                      name="title_release_year" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_runtime]"
+                      dataType="i4"
+                      name="title_runtime" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_rating]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="title_rating" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_bluray_available]"
+                      dataType="bool"
+                      name="title_bluray_available" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_dvd_available]"
+                      dataType="bool"
+                      name="title_dvd_available" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_instant_available]"
+                      dataType="bool"
+                      name="title_instant_available" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_date_modified]"
+                      dataType="dbTimeStamp"
+                      name="title_date_modified" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_id]"
+                      name="title_id" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_name]"
+                      name="title_name" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_type]"
+                      name="title_type" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_synopsis]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_synopsis]"
+                      name="title_synopsis" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_avg_rating]"
+                      dataType="numeric"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_avg_rating]"
+                      name="title_avg_rating"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_release_year]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_release_year]"
+                      name="title_release_year" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_runtime]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_runtime]"
+                      name="title_runtime" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_rating]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_rating]"
+                      name="title_rating" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_bluray_available]"
+                      dataType="bool"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_bluray_available]"
+                      name="title_bluray_available" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_dvd_available]"
+                      dataType="bool"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_dvd_available]"
+                      name="title_dvd_available" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_instant_available]"
+                      dataType="bool"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_instant_available]"
+                      name="title_instant_available" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_date_modified]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[title_date_modified]"
+                      name="title_date_modified" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Fudgeflex ff_titles to stage_ff_titles.Paths[OLE DB Source Output]"
+              endId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{66c0f971-6617-4466-801d-7fc407c1854d}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Fudgeflex ff_title_genres to stage_ff_title_genres"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - Stage stage_ff_title_genres"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage_ff_title_genres]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Inputs[OLE DB Destination Input].Columns[tg_genre_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="tg_genre_name"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Inputs[OLE DB Destination Input].ExternalColumns[tg_genre_name]"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].Columns[tg_genre_name]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Inputs[OLE DB Destination Input].Columns[tg_title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="tg_title_id"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Inputs[OLE DB Destination Input].ExternalColumns[tg_title_id]"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].Columns[tg_title_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Inputs[OLE DB Destination Input].ExternalColumns[tg_genre_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="tg_genre_name" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Inputs[OLE DB Destination Input].ExternalColumns[tg_title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="tg_title_id" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - fudgeflex_v3 ff_title_genres"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ff_title_genres]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].Columns[tg_genre_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].ExternalColumns[tg_genre_name]"
+                      length="200"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].Columns[tg_genre_name]"
+                      name="tg_genre_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].Columns[tg_title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].ExternalColumns[tg_title_id]"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].Columns[tg_title_id]"
+                      name="tg_title_id"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].ExternalColumns[tg_genre_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="tg_genre_name" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output].ExternalColumns[tg_title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="tg_title_id" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Error Output].Columns[tg_genre_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Error Output].Columns[tg_genre_name]"
+                      name="tg_genre_name" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Error Output].Columns[tg_title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Error Output].Columns[tg_title_id]"
+                      name="tg_title_id" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres.Paths[OLE DB Source Output]"
+              endId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{f4293d8b-9996-4731-8656-483a447d551a}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="DST - Stage stage_ff_zipcodes"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[stage_ff_zipcodes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input].Columns[zip_code]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="zip_code"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input].ExternalColumns[zip_code]"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].Columns[zip_code]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input].Columns[zip_city]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="zip_city"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input].ExternalColumns[zip_city]"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].Columns[zip_city]" />
+                    <inputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input].Columns[zip_state]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="2"
+                      cachedName="zip_state"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input].ExternalColumns[zip_state]"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].Columns[zip_state]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input].ExternalColumns[zip_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="zip_code" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input].ExternalColumns[zip_city]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="zip_city" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input].ExternalColumns[zip_state]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="zip_state" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - fudgeflex_v3 ff_zipcodes"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[ff_zipcodes]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.fudgeflix_v3 1]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].Columns[zip_code]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].ExternalColumns[zip_code]"
+                      length="5"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].Columns[zip_code]"
+                      name="zip_code"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].Columns[zip_city]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].ExternalColumns[zip_city]"
+                      length="50"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].Columns[zip_city]"
+                      name="zip_city"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].Columns[zip_state]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].ExternalColumns[zip_state]"
+                      length="2"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].Columns[zip_state]"
+                      name="zip_state"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].ExternalColumns[zip_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="zip_code" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].ExternalColumns[zip_city]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="zip_city" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output].ExternalColumns[zip_state]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      name="zip_state" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[zip_code]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[zip_code]"
+                      name="zip_code" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[zip_city]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[zip_city]"
+                      name="zip_city" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[zip_state]"
+                      codePage="1252"
+                      dataType="str"
+                      length="2"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[zip_state]"
+                      name="zip_state" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes.Paths[OLE DB Source Output]"
+              endId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Truncate Stage Tables stage_ff"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B55C7390-53AE-495A-B5A1-56C9AC136F61}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Truncate Stage Tables stage_ff"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{D95D1DB7-2176-40F0-9584-8111277EB2BD}"
+          SQLTask:SqlStatementSource="truncate table stage_ff_account_titles;&#xA;truncate table stage_ff_accounts;&#xA;truncate table stage_ff_zipcodes;&#xA;truncate table stage_ff_titles;&#xA;truncate table stage_ff_title_genres;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{201E3AD4-D958-40C6-BE0B-FDC1298729EE}"
+      DTS:From="Package\Truncate Stage Tables stage_ff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{17880597-0EAF-4E3C-893A-8B5C3329AF8F}"
+      DTS:From="Package\Truncate Stage Tables stage_ff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 2]"
+      DTS:CreationName=""
+      DTS:DTSID="{615D3D50-A798-4C4F-8CF5-A8E79E5619C8}"
+      DTS:From="Package\Truncate Stage Tables stage_ff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 2"
+      DTS:To="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 3]"
+      DTS:CreationName=""
+      DTS:DTSID="{D9860365-B8A3-4437-808A-51E0D34CCAE7}"
+      DTS:From="Package\Truncate Stage Tables stage_ff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 3"
+      DTS:To="Package\DF - Fudgeflex ff_titles to stage_ff_titles" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 4]"
+      DTS:CreationName=""
+      DTS:DTSID="{B4D91B69-F0E9-446C-BFAA-335C88E14356}"
+      DTS:From="Package\Truncate Stage Tables stage_ff"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 4"
+      DTS:To="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="353.6,41.6"
+          Id="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles"
+          TopLeft="42,141" />
+        <NodeLayout
+          Size="306.4,41.6"
+          Id="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts"
+          TopLeft="94,225" />
+        <NodeLayout
+          Size="333.6,41.6"
+          Id="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres"
+          TopLeft="539,128" />
+        <NodeLayout
+          Size="268.8,41.6"
+          Id="Package\DF - Fudgeflex ff_titles to stage_ff_titles"
+          TopLeft="538,214" />
+        <NodeLayout
+          Size="304,41.6"
+          Id="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes"
+          TopLeft="289,314" />
+        <NodeLayout
+          Size="225.6,41.6"
+          Id="Package\Truncate Stage Tables stage_ff"
+          TopLeft="322,53" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="362.333333333333,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-143.333333333333,46"
+              Start="0,0"
+              End="-143.333333333333,38.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.09999999999999" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.09999999999999"
+                    Point2="0,12.1"
+                    Point3="-4,12.1" />
+                  <mssgle:LineSegment
+                    End="-139.333333333333,12.1" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-139.333333333333,12.1"
+                    Point2="-143.333333333333,12.1"
+                    Point3="-143.333333333333,16.1" />
+                  <mssgle:LineSegment
+                    End="-143.333333333333,38.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="398.533333333333,94.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-151.333333333333,130.4"
+              Start="0,0"
+              End="-151.333333333333,122.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,48.7109859154929" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,48.7109859154929"
+                    Point2="0,52.7109859154929"
+                    Point3="-4,52.7109859154929" />
+                  <mssgle:LineSegment
+                    End="-147.333333333333,52.7109859154929" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-147.333333333333,52.7109859154929"
+                    Point2="-151.333333333333,52.7109859154929"
+                    Point3="-151.333333333333,56.7109859154929" />
+                  <mssgle:LineSegment
+                    End="-151.333333333333,122.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 2]"
+          TopLeft="438,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,219"
+              Start="0,0"
+              End="0,211.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,211.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 3]"
+          TopLeft="471.333333333333,95">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="201.166666666667,119"
+              Start="0,0"
+              End="201.166666666667,111.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44.1019332161687" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44.1019332161687"
+                    Point2="0,48.1019332161687"
+                    Point3="4,48.1019332161687" />
+                  <mssgle:LineSegment
+                    End="197.166666666667,48.1019332161687" />
+                  <mssgle:CubicBezierSegment
+                    Point1="197.166666666667,48.1019332161687"
+                    Point2="201.166666666667,48.1019332161687"
+                    Point3="201.166666666667,52.1019332161687" />
+                  <mssgle:LineSegment
+                    End="201.166666666667,111.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 4]"
+          TopLeft="507.333333333333,94.6">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="198.466666666667,33.4"
+              Start="0,0"
+              End="198.466666666667,25.9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,4.78641114982578" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,4.78641114982578"
+                    Point2="0,8.78641114982578"
+                    Point3="4,8.78641114982578" />
+                  <mssgle:LineSegment
+                    End="194.466666666667,8.78641114982578" />
+                  <mssgle:CubicBezierSegment
+                    Point1="194.466666666667,8.78641114982578"
+                    Point2="198.466666666667,8.78641114982578"
+                    Point3="198.466666666667,12.7864111498258" />
+                  <mssgle:LineSegment
+                    End="198.466666666667,25.9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="250,42"
+          Id="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles"
+          TopLeft="230,54" />
+        <NodeLayout
+          Size="248,42"
+          Id="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles"
+          TopLeft="232,155" />
+        <EdgeLayout
+          Id="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles.Paths[OLE DB Source Output]"
+          TopLeft="355.5,96">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\DST - Stage stage_ff_account_titles">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_account_titles to stage_ff_account_titles\SRC - fudgeflex_v3 ff_account_titles">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="226,42"
+          Id="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts"
+          TopLeft="184,57" />
+        <NodeLayout
+          Size="224,42"
+          Id="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts"
+          TopLeft="190,158" />
+        <EdgeLayout
+          Id="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts.Paths[OLE DB Source Output]"
+          TopLeft="299.5,99">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59"
+              Start="0,0"
+              End="0,51.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,51.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\DST - Stage stage_ff_accounts">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_accounts to stage_ff_accounts\SRC - fudgeflex_v3 ff_accounts">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="240,42"
+          Id="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres"
+          TopLeft="233,79" />
+        <NodeLayout
+          Size="238,42"
+          Id="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres"
+          TopLeft="236,174" />
+        <EdgeLayout
+          Id="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres.Paths[OLE DB Source Output]"
+          TopLeft="354,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,53"
+              Start="0,0"
+              End="0,45.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,45.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\DST - Stage stage_ff_title_genres">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_title_genres to stage_ff_title_genres\SRC - fudgeflex_v3 ff_title_genres">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF - Fudgeflex ff_titles to stage_ff_titles">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="207,42"
+          Id="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles"
+          TopLeft="233,79" />
+        <NodeLayout
+          Size="205,42"
+          Id="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles"
+          TopLeft="234,211" />
+        <EdgeLayout
+          Id="Package\DF - Fudgeflex ff_titles to stage_ff_titles.Paths[OLE DB Source Output]"
+          TopLeft="336.5,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,90"
+              Start="0,0"
+              End="0,82.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,82.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_titles to stage_ff_titles\DST - Stage stage_ff_titles">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_titles to stage_ff_titles\SRC - fudgeflex_v3 ff_titles">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="225,42"
+          Id="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes"
+          TopLeft="233,79" />
+        <NodeLayout
+          Size="223,42"
+          Id="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes"
+          TopLeft="278,217" />
+        <EdgeLayout
+          Id="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes.Paths[OLE DB Source Output]"
+          TopLeft="345.5,121">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="44,96"
+              Start="0,0"
+              End="44,88.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,44" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,44"
+                    Point2="0,48"
+                    Point3="4,48" />
+                  <mssgle:LineSegment
+                    End="40,48" />
+                  <mssgle:CubicBezierSegment
+                    Point1="40,48"
+                    Point2="44,48"
+                    Point3="44,52" />
+                  <mssgle:LineSegment
+                    End="44,88.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\DST - Stage stage_ff_zipcodes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Fudgeflex ff_zipcodes to stage_ff_zipcodes\SRC - fudgeflex_v3 ff_zipcodes">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

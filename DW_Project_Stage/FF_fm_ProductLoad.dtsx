@@ -1,0 +1,2721 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/19/2020 3:33:41 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="IST-RL-VH3-05"
+  DTS:CreatorName="AD\rmghosh"
+  DTS:DTSID="{E994E620-9307-43DA-8770-EF7E6CCD4E24}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="FF_fm_ProductLoad"
+  DTS:PackageType="5"
+  DTS:VersionBuild="17"
+  DTS:VersionGUID="{82F5FE4F-460E-4B5C-843A-75287C058AF7}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_dw]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{A6CD3BFF-EFF9-4A3D-8518-358F2C7A4B57}"
+      DTS:ObjectName="ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_dw">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ist-cs-dw1.ad.syr.edu;Initial Catalog=ist722_hhkhan_cb1_dw;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{59A2725C-A34A-4DB8-A2B6-F333A424B3F4}"
+      DTS:ObjectName="ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=ist-cs-dw1.ad.syr.edu;Initial Catalog=ist722_hhkhan_cb1_stage;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DF - Stage to DimProduct"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{67A5F5D1-83DB-4D38-AA42-76B095979D52}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DF - Stage to DimProduct"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DF - Stage to DimProduct\Data Conversion"
+              componentClassID="Microsoft.DataConvert"
+              contactInfo="Data Conversion;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Data Conversion"
+              name="Data Conversion"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Data Conversion.Inputs[Data Conversion Input]"
+                  name="Data Conversion Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Data Conversion.Inputs[Data Conversion Input].Columns[product_id]"
+                      cachedDataType="i4"
+                      cachedName="product_id"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_id]" />
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Output]"
+                  exclusionGroup="1"
+                  name="Data Conversion Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Output].Columns[Converted_product_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Output].Columns[Converted_product_id]"
+                      name="Converted_product_id"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Specifies the input column used as the source of data for the conversion."
+                          name="SourceInputColumnLineageID">#{Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_id]}</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                          name="FastParse">false</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Data Conversion Error Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Data Conversion.Inputs[Data Conversion Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\Derived Column"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Derived Column.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Output].Columns[RowIsCurrent]"
+                      dataType="wstr"
+                      description="RowIsCurrent"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="5"
+                      lineageId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Output].Columns[RowIsCurrent]"
+                      name="RowIsCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,5)("False")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,5)("False")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Derived Column.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\Derived Column 1"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Derived Column 1"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Derived Column 1.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Output].Columns[RowIsCurrent]"
+                      dataType="wstr"
+                      description="RowIsCurrent"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="5"
+                      lineageId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Output].Columns[RowIsCurrent]"
+                      name="RowIsCurrent"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">(DT_WSTR,5)("True")</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">(DT_WSTR,5)("True")</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Derived Column 1.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\Insert Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="Insert Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ff_fm_schema].[DimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to DimProduct\Insert Destination.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_dw]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_dw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_id"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_id]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].Columns[Subsidary]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Subsidary"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Subsidiary]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Subsidary]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].Columns[title_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="title_name"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_name]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].Columns[Movie_Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Movie_Category"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategory]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Movie_Category]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].Columns[RowIsCurrent]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="RowIsCurrent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowIsCurrent]"
+                      lineageId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Output].Columns[RowIsCurrent]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductKey]"
+                      dataType="i4"
+                      name="ProductKey" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[Subsidiary]"
+                      dataType="wstr"
+                      length="15"
+                      name="Subsidiary" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[ProductCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="ProductCategory" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowIsCurrent]"
+                      dataType="wstr"
+                      length="5"
+                      name="RowIsCurrent" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowStartDate]"
+                      dataType="dbTimeStamp"
+                      name="RowStartDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowEndDate]"
+                      dataType="dbTimeStamp"
+                      name="RowEndDate" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input].ExternalColumns[RowChangeReason]"
+                      dataType="wstr"
+                      length="200"
+                      name="RowChangeReason" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Insert Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Insert Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\Lookup title genres"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup title genres"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[stage_ff_title_genres]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[stage_ff_title_genres]) [refTable]
+where [refTable].[tg_title_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="tg_genre_name" dataType="DT_STR" length="200" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="tg_title_id" dataType="DT_STR" length="20" precision="0" scale="0" codePage="1252"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to DimProduct\Lookup title genres.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Lookup title genres.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Lookup title genres.Inputs[Lookup Input].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_id"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">tg_title_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  errorRowDisposition="FailComponent"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Lookup title genres.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Match Output].Columns[Movie_Category]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Copy Column"
+                      length="200"
+                      lineageId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Match Output].Columns[Movie_Category]"
+                      name="Movie_Category"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn">tg_genre_name</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Lookup title genres.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Lookup title genres.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\OLE DB Command"
+              componentClassID="Microsoft.OLEDBCommand"
+              contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+              description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+              name="OLE DB Command"
+              usesDispositions="true"
+              version="2">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [ff_fm_schema].[DimProduct] SET [RowIsCurrent] = ? WHERE [ProductID] = ? AND [Subsidiary] = ? AND [RowIsCurrent] = 'True'</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to DimProduct\OLE DB Command.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_dw]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_dw]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input]"
+                  errorOrTruncationOperation="Command Execution"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Command Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_id"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_id]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input].Columns[Subsidary]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Subsidary"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Subsidary]" />
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input].Columns[RowIsCurrent]"
+                      cachedDataType="wstr"
+                      cachedLength="5"
+                      cachedName="RowIsCurrent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      lineageId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Output].Columns[RowIsCurrent]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                      dataType="wstr"
+                      length="5"
+                      name="Param_0">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="Param_1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_2]"
+                      dataType="wstr"
+                      length="15"
+                      name="Param_2">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                          name="DBParamInfoFlags">65</property>
+                      </properties>
+                    </externalMetadataColumn>
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\OLE DB Command.Outputs[OLE DB Command Output]"
+                  exclusionGroup="1"
+                  name="OLE DB Command Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Command Error Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct"
+              componentClassID="Microsoft.SCD"
+              contactInfo="Slowly Changing Dimension;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;3"
+              description="Updates a SQL Server Analysis Services data warehouse dimension. Update dimension records that are already present and  insert dimension records that aren't. For example, update the DimProduct table of the AdventureWorksDW OLAP database with data from the Products table in the AdventureWorks OLTP database."
+              name="SCD  - Type 2 Slowly changing dimension DimProduct"
+              version="3">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SELECT statement used to create a schema rowset."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [ProductCategory], [ProductID], [ProductName], [Subsidiary],[RowIsCurrent] FROM [ff_fm_schema].[DimProduct]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the WHERE clause in the SELECT statement that selects the current row among rows with identical business keys."
+                  name="CurrentRowWhere">[RowIsCurrent] = 'True'</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
+                  name="UpdateChangingAttributeHistory">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
+                  name="FailOnFixedAttributeChange">true</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the column name for the inferred member."
+                  name="InferredMemberIndicator"></property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether inferred member updates are detected."
+                  name="EnableInferredMember">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the transformation fails when a lookup of an existing record fails."
+                  name="FailOnLookupFailure">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies that all rows in the input are new or the transformation detects the change type."
+                  name="IncomingRowChangeType"
+                  typeConverter="IncomingRowChangeType">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Connections[LookupConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_dw]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_dw]"
+                  description="Defines the connection to use for lookups in the dimension table"
+                  name="LookupConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input]"
+                  name="Slowly Changing Dimension Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_id"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductID]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_id]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].Columns[Subsidary]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Subsidary"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].ExternalColumns[Subsidiary]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Subsidary]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].Columns[Movie_Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Movie_Category"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductCategory]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Movie_Category]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].Columns[title_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="title_name"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductName]"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_name]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          name="ColumnType"
+                          typeConverter="ColumnType">3</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductCategory]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="ProductCategory" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductID]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].ExternalColumns[ProductName]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="ProductName" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].ExternalColumns[Subsidiary]"
+                      dataType="wstr"
+                      length="15"
+                      name="Subsidiary" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input].ExternalColumns[RowIsCurrent]"
+                      dataType="wstr"
+                      length="5"
+                      name="RowIsCurrent" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Outputs[Unchanged Output]"
+                  description="Unchanged rows"
+                  exclusionGroup="1"
+                  name="Unchanged Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Outputs[New Output]"
+                  description="New rows"
+                  exclusionGroup="1"
+                  name="New Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Outputs[Fixed Attribute Output]"
+                  description="Rows with changes in columns tagged FixedAttribute"
+                  exclusionGroup="1"
+                  name="Fixed Attribute Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Outputs[Changing Attribute Updates Output]"
+                  description="These rows contain new information for ChangingAttribute (Type 1) column changes"
+                  exclusionGroup="1"
+                  name="Changing Attribute Updates Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Outputs[Historical Attribute Inserts Output]"
+                  description="HistoricalAttribute (Type 2) changes result in these new rows"
+                  exclusionGroup="2"
+                  name="Historical Attribute Inserts Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Outputs[Inferred Member Updates Output]"
+                  description="Information to update unpopulated initial dimension row"
+                  exclusionGroup="1"
+                  name="Inferred Member Updates Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input]">
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - Stage stage_ff_titles"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stage_ff_titles]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_id]"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_id]"
+                      name="title_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_name]"
+                      length="200"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_name]"
+                      name="title_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_type]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_type]"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_type]"
+                      name="title_type"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_synopsis]"
+                      codePage="1252"
+                      dataType="text"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_synopsis]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_synopsis]"
+                      name="title_synopsis"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_avg_rating]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_avg_rating]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_avg_rating]"
+                      name="title_avg_rating"
+                      precision="18"
+                      scale="2"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_release_year]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_release_year]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_release_year]"
+                      name="title_release_year"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_runtime]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_runtime]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_runtime]"
+                      name="title_runtime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_rating]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_rating]"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_rating]"
+                      name="title_rating"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_bluray_available]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_bluray_available]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_bluray_available]"
+                      name="title_bluray_available"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_dvd_available]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_dvd_available]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_dvd_available]"
+                      name="title_dvd_available"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_instant_available]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_instant_available]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_instant_available]"
+                      name="title_instant_available"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_date_modified]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_date_modified]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_date_modified]"
+                      name="title_date_modified"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="title_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="title_name" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="title_type" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_synopsis]"
+                      codePage="1252"
+                      dataType="text"
+                      name="title_synopsis" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_avg_rating]"
+                      dataType="numeric"
+                      name="title_avg_rating"
+                      precision="18"
+                      scale="2" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_release_year]"
+                      dataType="i4"
+                      name="title_release_year" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_runtime]"
+                      dataType="i4"
+                      name="title_runtime" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_rating]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="title_rating" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_bluray_available]"
+                      dataType="bool"
+                      name="title_bluray_available" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_dvd_available]"
+                      dataType="bool"
+                      name="title_dvd_available" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_instant_available]"
+                      dataType="bool"
+                      name="title_instant_available" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].ExternalColumns[title_date_modified]"
+                      dataType="dbTimeStamp"
+                      name="title_date_modified" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_id]"
+                      name="title_id" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_name]"
+                      name="title_name" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_type]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_type]"
+                      name="title_type" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_synopsis]"
+                      codePage="1252"
+                      dataType="text"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_synopsis]"
+                      name="title_synopsis" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_avg_rating]"
+                      dataType="numeric"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_avg_rating]"
+                      name="title_avg_rating"
+                      precision="18"
+                      scale="2" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_release_year]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_release_year]"
+                      name="title_release_year" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_runtime]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_runtime]"
+                      name="title_runtime" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_rating]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_rating]"
+                      name="title_rating" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_bluray_available]"
+                      dataType="bool"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_bluray_available]"
+                      name="title_bluray_available" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_dvd_available]"
+                      dataType="bool"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_dvd_available]"
+                      name="title_dvd_available" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_instant_available]"
+                      dataType="bool"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_instant_available]"
+                      name="title_instant_available" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_date_modified]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[title_date_modified]"
+                      name="title_date_modified" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SRC - Stage stage_fm_products"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[stage_fm_products]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage]"
+                  connectionManagerRefId="Package.ConnectionManagers[ist-cs-dw1.ad.syr.edu.ist722_hhkhan_cb1_stage]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_id]"
+                      name="product_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_department]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_department]"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_department]"
+                      name="product_department"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_name]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_name]"
+                      length="50"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_name]"
+                      name="product_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_retail_price]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_retail_price]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_retail_price]"
+                      name="product_retail_price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_wholesale_price]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_wholesale_price]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_wholesale_price]"
+                      name="product_wholesale_price"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_is_active]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_is_active]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_is_active]"
+                      name="product_is_active"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_add_date]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_add_date]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_add_date]"
+                      name="product_add_date"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_vendor_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_vendor_id]"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_vendor_id]"
+                      name="product_vendor_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_description]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_description]"
+                      length="1000"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_description]"
+                      name="product_description"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_id]"
+                      dataType="i4"
+                      name="product_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_department]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="product_department" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="product_name" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_retail_price]"
+                      dataType="cy"
+                      name="product_retail_price" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_wholesale_price]"
+                      dataType="cy"
+                      name="product_wholesale_price" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_is_active]"
+                      dataType="bool"
+                      name="product_is_active" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_add_date]"
+                      dataType="dbTimeStamp"
+                      name="product_add_date" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_vendor_id]"
+                      dataType="i4"
+                      name="product_vendor_id" />
+                    <externalMetadataColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].ExternalColumns[product_description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      name="product_description" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_id]"
+                      name="product_id" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_department]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_department]"
+                      name="product_department" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_name]"
+                      name="product_name" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_retail_price]"
+                      dataType="cy"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_retail_price]"
+                      name="product_retail_price" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_wholesale_price]"
+                      dataType="cy"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_wholesale_price]"
+                      name="product_wholesale_price" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_is_active]"
+                      dataType="bool"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_is_active]"
+                      name="product_is_active" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_add_date]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_add_date]"
+                      name="product_add_date" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_vendor_id]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_vendor_id]"
+                      name="product_vendor_id" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_description]"
+                      codePage="1252"
+                      dataType="str"
+                      length="1000"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[product_description]"
+                      name="product_description" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\Subsidary FM"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Subsidary FM"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Subsidary FM.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Subsidary FM.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Output].Columns[Subsidary]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Output].Columns[Subsidary]"
+                      name="Subsidary"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"FudgeMart"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"FudgeMart"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Subsidary FM.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix"
+              componentClassID="Microsoft.DerivedColumn"
+              contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+              description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+              name="Subsidary FudgeFlix"
+              usesDispositions="true">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Inputs[Derived Column Input]"
+                  description="Input to the Derived Column Transformation"
+                  name="Derived Column Input">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Output]"
+                  description="Default Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  name="Derived Column Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Output].Columns[Subsidary]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      length="9"
+                      lineageId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Output].Columns[Subsidary]"
+                      name="Subsidary"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Expression"
+                          name="Expression">"FudgeFlix"</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Derived Column Friendly Expression"
+                          expressionType="Notify"
+                          name="FriendlyExpression">"FudgeFlix"</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Error Output]"
+                  description="Error Output of the Derived Column Transformation"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Derived Column Error Output"
+                  synchronousInputId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Inputs[Derived Column Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\Union All"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 2].Columns[Subsidary]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Subsidary"
+                      lineageId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Output].Columns[Subsidary]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Subsidary]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 2].Columns[Converted_product_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="Converted_product_id"
+                      lineageId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Output].Columns[Converted_product_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 2].Columns[product_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="product_name"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 2].Columns[product_department]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="product_department"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output].Columns[product_department]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Movie_Category]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 3]"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 3].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_id"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 3].Columns[title_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="title_name"
+                      lineageId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output].Columns[title_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 3].Columns[Movie_Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Movie_Category"
+                      lineageId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Match Output].Columns[Movie_Category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Movie_Category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 3].Columns[Subsidary]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Subsidary"
+                      lineageId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Output].Columns[Subsidary]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Subsidary]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 1]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 1">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_id]"
+                      name="title_id" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_name]"
+                      name="title_name" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Movie_Category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Movie_Category]"
+                      name="Movie_Category" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Subsidary]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Subsidary]"
+                      name="Subsidary" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DF - Stage to DimProduct\Union All 1"
+              componentClassID="Microsoft.UnionAll"
+              contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+              description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+              name="Union All 1"
+              version="1">
+              <inputs>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 1]"
+                  name="Union All Input 1">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 1].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_id"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 1].Columns[title_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="title_name"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 1].Columns[Movie_Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Movie_Category"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Movie_Category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Movie_Category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 1].Columns[Subsidary]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Subsidary"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Subsidary]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Subsidary]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 2]"
+                  hasSideEffects="true"
+                  name="Union All Input 2">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 2].Columns[title_id]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="title_id"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_id]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_id]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 2].Columns[title_name]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="title_name"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[title_name]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_name]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 2].Columns[Movie_Category]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="Movie_Category"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Movie_Category]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Movie_Category]}</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 2].Columns[Subsidary]"
+                      cachedDataType="wstr"
+                      cachedLength="9"
+                      cachedName="Subsidary"
+                      lineageId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1].Columns[Subsidary]">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Output column lineage ID"
+                          name="OutputColumnLineageID">#{Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Subsidary]}</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+                <input
+                  refId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 3]"
+                  dangling="true"
+                  hasSideEffects="true"
+                  name="Union All Input 3">
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1]"
+                  name="Union All Output 1">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_id]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_id]"
+                      name="title_id" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_name]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[title_name]"
+                      name="title_name" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Movie_Category]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Movie_Category]"
+                      name="Movie_Category" />
+                    <outputColumn
+                      refId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Subsidary]"
+                      dataType="wstr"
+                      length="9"
+                      lineageId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1].Columns[Subsidary]"
+                      name="Subsidary" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[Data Conversion Output]"
+              endId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 2]"
+              name="Data Conversion Output"
+              startId="Package\DF - Stage to DimProduct\Data Conversion.Outputs[Data Conversion Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[Derived Column Output]"
+              endId="Package\DF - Stage to DimProduct\Data Conversion.Inputs[Data Conversion Input]"
+              name="Derived Column Output"
+              startId="Package\DF - Stage to DimProduct\Subsidary FM.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[Derived Column Output1]"
+              endId="Package\DF - Stage to DimProduct\Union All.Inputs[Union All Input 3]"
+              name="Derived Column Output"
+              startId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[Derived Column Output2]"
+              endId="Package\DF - Stage to DimProduct\OLE DB Command.Inputs[OLE DB Command Input]"
+              name="Derived Column Output"
+              startId="Package\DF - Stage to DimProduct\Derived Column.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[Derived Column Output3]"
+              endId="Package\DF - Stage to DimProduct\Insert Destination.Inputs[OLE DB Destination Input]"
+              name="Derived Column Output"
+              startId="Package\DF - Stage to DimProduct\Derived Column 1.Outputs[Derived Column Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[Historical Attribute Inserts Output]"
+              endId="Package\DF - Stage to DimProduct\Derived Column.Inputs[Derived Column Input]"
+              name="Historical Attribute Inserts Output"
+              startId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Outputs[Historical Attribute Inserts Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[Lookup Match Output]"
+              endId="Package\DF - Stage to DimProduct\Subsidary FudgeFlix.Inputs[Derived Column Input]"
+              name="Lookup Match Output"
+              startId="Package\DF - Stage to DimProduct\Lookup title genres.Outputs[Lookup Match Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[New Output]"
+              endId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 1]"
+              name="New Output"
+              startId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Outputs[New Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[OLE DB Command Output]"
+              endId="Package\DF - Stage to DimProduct\Union All 1.Inputs[Union All Input 2]"
+              name="OLE DB Command Output"
+              startId="Package\DF - Stage to DimProduct\OLE DB Command.Outputs[OLE DB Command Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[OLE DB Source Output]"
+              endId="Package\DF - Stage to DimProduct\Lookup title genres.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[OLE DB Source Output1]"
+              endId="Package\DF - Stage to DimProduct\Subsidary FM.Inputs[Derived Column Input]"
+              name="OLE DB Source Output"
+              startId="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products.Outputs[OLE DB Source Output]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[Union All Output 1]"
+              endId="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct.Inputs[Slowly Changing Dimension Input]"
+              name="Union All Output 1"
+              startId="Package\DF - Stage to DimProduct\Union All.Outputs[Union All Output 1]" />
+            <path
+              refId="Package\DF - Stage to DimProduct.Paths[Union All Output 11]"
+              endId="Package\DF - Stage to DimProduct\Derived Column 1.Inputs[Derived Column Input]"
+              name="Union All Output 1"
+              startId="Package\DF - Stage to DimProduct\Union All 1.Outputs[Union All Output 1]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="199.2,41.6"
+          Id="Package\DF - Stage to DimProduct"
+          TopLeft="309.142862407529,49.2033620345964" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DF - Stage to DimProduct">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="228,41.6"
+          Id="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products"
+          TopLeft="5.5,5.49999999999995" />
+        <NodeLayout
+          Size="204,41.6"
+          Id="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles"
+          TopLeft="294.5,5.49999999999995" />
+        <NodeLayout
+          Size="168.8,41.6"
+          Id="Package\DF - Stage to DimProduct\Lookup title genres"
+          TopLeft="312.1,107.1" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[OLE DB Source Output]"
+          TopLeft="396.5,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="140.8,41.6"
+          Id="Package\DF - Stage to DimProduct\Subsidary FM"
+          TopLeft="102.1,107.1" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[OLE DB Source Output1]"
+          TopLeft="119.5,47.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="53,59.9999999999999"
+              Start="0,0"
+              End="53,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,26"
+                    Point2="0,30"
+                    Point3="4,30" />
+                  <mssgle:LineSegment
+                    End="49,30" />
+                  <mssgle:CubicBezierSegment
+                    Point1="49,30"
+                    Point2="53,30"
+                    Point3="53,34" />
+                  <mssgle:LineSegment
+                    End="53,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\DF - Stage to DimProduct\Subsidary FudgeFlix"
+          TopLeft="310.5,208.7" />
+        <NodeLayout
+          Size="155.2,41.6"
+          Id="Package\DF - Stage to DimProduct\Data Conversion"
+          TopLeft="94.9,208.7" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[Lookup Match Output]"
+          TopLeft="396.5,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.4453124999999,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[Derived Column Output]"
+          TopLeft="172.5,148.7">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="120,41.6"
+          Id="Package\DF - Stage to DimProduct\Union All"
+          TopLeft="336.5,310.3" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[Data Conversion Output]"
+          TopLeft="172.5,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="205.333333333333,59.9999999999999"
+              Start="0,0"
+              End="205.333333333333,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5263157894736"
+                    Point2="0,35.5263157894736"
+                    Point3="4,35.5263157894736" />
+                  <mssgle:LineSegment
+                    End="201.333333333333,35.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="201.333333333333,35.5263157894736"
+                    Point2="205.333333333333,35.5263157894736"
+                    Point3="205.333333333333,39.5263157894736" />
+                  <mssgle:LineSegment
+                    End="205.333333333333,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[Derived Column Output1]"
+          TopLeft="396.5,250.3">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="18.6666666666667,59.9999999999999"
+              Start="0,0"
+              End="18.6666666666667,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.5263157894736"
+                    Point2="0,35.5263157894736"
+                    Point3="4,35.5263157894736" />
+                  <mssgle:LineSegment
+                    End="14.6666666666667,35.5263157894736" />
+                  <mssgle:CubicBezierSegment
+                    Point1="14.6666666666667,35.5263157894736"
+                    Point2="18.6666666666667,35.5263157894736"
+                    Point3="18.6666666666667,39.5263157894736" />
+                  <mssgle:LineSegment
+                    End="18.6666666666667,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="332,41.6"
+          Id="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct"
+          TopLeft="230.5,411.9" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[Union All Output 1]"
+          TopLeft="396.5,351.9">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="152.8,41.6"
+          Id="Package\DF - Stage to DimProduct\Derived Column"
+          TopLeft="183.1,513.5" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[Historical Attribute Inserts Output]"
+          TopLeft="342.5,453.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-83,59.9999999999999"
+              Start="0,0"
+              End="-83,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,20.1726618705036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,20.1726618705036"
+                    Point2="0,24.1726618705036"
+                    Point3="-4,24.1726618705036" />
+                  <mssgle:LineSegment
+                    End="-79,24.1726618705036" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-79,24.1726618705036"
+                    Point2="-83,24.1726618705036"
+                    Point3="-83,28.1726618705036" />
+                  <mssgle:LineSegment
+                    End="-83,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-116.55638671875,29.1726618705036,150.1127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="164.8,41.6"
+          Id="Package\DF - Stage to DimProduct\OLE DB Command"
+          TopLeft="171.1,615.099999999999" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[Derived Column Output2]"
+          TopLeft="256.5,555.1">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="129.6,41.6"
+          Id="Package\DF - Stage to DimProduct\Union All 1"
+          TopLeft="331.7,716.699999999999" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[New Output]"
+          TopLeft="450.5,453.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-33.7333333333333,263.2"
+              Start="0,0"
+              End="-33.7333333333333,255.7">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,126.387913648112" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,126.387913648112"
+                    Point2="0,130.387913648112"
+                    Point3="-4,130.387913648112" />
+                  <mssgle:LineSegment
+                    End="-29.7333333333333,130.387913648112" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-29.7333333333333,130.387913648112"
+                    Point2="-33.7333333333333,130.387913648112"
+                    Point3="-33.7333333333333,134.387913648112" />
+                  <mssgle:LineSegment
+                    End="-33.7333333333333,255.7" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-43.9580533854167,135.387913648112,54.1827734375,11.43359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[OLE DB Command Output]"
+          TopLeft="253.5,656.699999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="122.733333333333,59.9999999999999"
+              Start="0,0"
+              End="122.733333333333,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.560975609756" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.560975609756"
+                    Point2="0,35.560975609756"
+                    Point3="4,35.560975609756" />
+                  <mssgle:LineSegment
+                    End="118.733333333333,35.560975609756" />
+                  <mssgle:CubicBezierSegment
+                    Point1="118.733333333333,35.560975609756"
+                    Point2="122.733333333333,35.560975609756"
+                    Point3="122.733333333333,39.560975609756" />
+                  <mssgle:LineSegment
+                    End="122.733333333333,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\DF - Stage to DimProduct\Derived Column 1"
+          TopLeft="315.3,818.299999999999" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[Union All Output 11]"
+          TopLeft="396.5,758.299999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="162.4,41.6"
+          Id="Package\DF - Stage to DimProduct\Insert Destination"
+          TopLeft="315.3,919.899999999999" />
+        <EdgeLayout
+          Id="Package\DF - Stage to DimProduct.Paths[Derived Column Output3]"
+          TopLeft="396.5,859.899999999999">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,59.9999999999999"
+              Start="0,0"
+              End="0,52.4999999999999">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.4999999999999" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage to DimProduct\SRC - Stage stage_fm_products">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage to DimProduct\SRC - Stage stage_ff_titles">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage to DimProduct\Lookup title genres">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[stage_ff_title_genres]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DF - Stage to DimProduct\SCD  - Type 2 Slowly changing dimension DimProduct">
+    <Properties>
+      <Property>
+        <Name>SCDMetadata</Name>
+        <Value
+          type="q2:string">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SCDWizardMetadata xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionID&gt;{A6CD3BFF-EFF9-4A3D-8518-358F2C7A4B57}&lt;/ConnectionID&gt;
+  &lt;TableName&gt;[ff_fm_schema].[DimProduct]&lt;/TableName&gt;
+  &lt;InputToColumnsCollection&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Union All.Outputs[Union All Output 1].Columns[Movie_Category]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ProductCategory&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Union All.Outputs[Union All Output 1].Columns[title_id]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ProductID&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Union All.Outputs[Union All Output 1].Columns[title_name]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;ProductName&lt;/ColumnName&gt;
+      &lt;KeyType&gt;None&lt;/KeyType&gt;
+      &lt;ChangeType&gt;HistoricalAttribute&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+    &lt;InputColumnToDBColumn&gt;
+      &lt;IdentificationString&gt;Union All.Outputs[Union All Output 1].Columns[Subsidary]&lt;/IdentificationString&gt;
+      &lt;ColumnName&gt;Subsidiary&lt;/ColumnName&gt;
+      &lt;KeyType&gt;BusinessKey&lt;/KeyType&gt;
+      &lt;ChangeType&gt;None&lt;/ChangeType&gt;
+    &lt;/InputColumnToDBColumn&gt;
+  &lt;/InputToColumnsCollection&gt;
+  &lt;GeneratedComponentsIdentificationStrings&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Union All 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Derived Column 1&lt;/anyType&gt;
+    &lt;anyType xsi:type="xsd:string"&gt;Insert Destination&lt;/anyType&gt;
+  &lt;/GeneratedComponentsIdentificationStrings&gt;
+  &lt;FailFixedAttribute&gt;true&lt;/FailFixedAttribute&gt;
+  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;UseStartEndDate&gt;false&lt;/UseStartEndDate&gt;
+  &lt;CurrentIndicatorColumn&gt;RowIsCurrent&lt;/CurrentIndicatorColumn&gt;
+  &lt;InferredIndicatorColumn /&gt;
+  &lt;ValueCurrent&gt;True&lt;/ValueCurrent&gt;
+  &lt;ValueExpired&gt;False&lt;/ValueExpired&gt;
+  &lt;StartDateColumn /&gt;
+  &lt;EndDateColumn /&gt;
+  &lt;DateVariable /&gt;
+  &lt;EnableInferredSupport&gt;false&lt;/EnableInferredSupport&gt;
+&lt;/SCDWizardMetadata&gt;</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
